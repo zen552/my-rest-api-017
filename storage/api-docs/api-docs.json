@@ -6,7 +6,7 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/book": {
+        "/my-api/public/api/book": {
             "get": {
                 "tags": [
                     "book"
@@ -70,7 +70,7 @@
                 }
             }
         },
-        "/api/book/{id}": {
+        "/my-api/public/api/book/{id}": {
             "get": {
                 "tags": [
                     "book"
