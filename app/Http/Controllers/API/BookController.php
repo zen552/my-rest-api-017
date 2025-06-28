@@ -63,7 +63,8 @@ class BookController extends Controller
      *                 "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu ‘sehat’ bagi tubuh kita.",
      *                 "price": 85000}
      *         ),
-     *     )
+     *     ),
+     *     security={{"pasport_token_ready":{}, "passport":{}}}
      * )
     */
     public function store(Request $request)
@@ -165,7 +166,8 @@ class BookController extends Controller
      *                 "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir ‘sehat’ ternyata belum tentu ‘sehat’ bagi tubuh kita.",
      *                 "price": 85000}
      *         ),
-     *     )
+     *     ),
+     *     security={{"passport_token_ready":{}, "passport":{}}}
      * )
     */
     public function update(Request $request, $id)
@@ -217,6 +219,7 @@ class BookController extends Controller
      *             format="int64"
      *         )
      *     ),
+     *     security={{"passport_token_ready"={}, "passport"={}}}
      * )
      */
     public function destroy($id)
