@@ -6,6 +6,243 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/anime_merch": {
+            "get": {
+                "tags": [
+                    "Anime Merch"
+                ],
+                "summary": "Display a listing of anime merchandise",
+                "operationId": "indexAnimeMerch",
+                "responses": {
+                    "200": {
+                        "description": "successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Anime Merch"
+                ],
+                "summary": "Store a newly created anime merchandise",
+                "operationId": "storeAnimeMerch",
+                "requestBody": {
+                    "description": "Request body description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AnimeMerch"
+                            },
+                            "example": {
+                                "nama_item": "One Piece Mug",
+                                "Producer": "Toei Animation",
+                                "tahun_rilis": "2023",
+                                "gambar": "https://example.com/cover.jpg",
+                                "description": "Mug edisi khusus One Piece Gear 5",
+                                "harga": 75000
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport_token_ready": [],
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/api/anime_merch/{id}": {
+            "get": {
+                "tags": [
+                    "Anime Merch"
+                ],
+                "summary": "Display the specified anime merchandise item",
+                "operationId": "showAnimeMerch",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of anime merchandise",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Item not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Anime Merch"
+                ],
+                "summary": "Update an anime merchandise item",
+                "operationId": "updateAnimeMerch",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of anime merchandise that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request body description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AnimeMerch"
+                            },
+                            "example": {
+                                "nama_item": "Naruto Hoodie",
+                                "producer": "Studio Pierrot",
+                                "tahun_rilis": "2023",
+                                "gambar": "https://example.com/cover.jpg",
+                                "description": "Hoodie keren bergambar Naruto",
+                                "harga": 120000
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "404": {
+                        "description": "Item not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport_token_ready": [],
+                        "passport": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Anime Merch"
+                ],
+                "summary": "Remove an anime merchandise item",
+                "operationId": "destroyAnimeMerch",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of anime merchandise that needs to be removed",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Item not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport_token_ready": [],
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/api/user/register": {
             "post": {
                 "tags": [
@@ -135,258 +372,19 @@
                     }
                 ]
             }
-        },
-        "/api/book": {
-            "get": {
-                "tags": [
-                    "book"
-                ],
-                "summary": "Display a listing of items",
-                "operationId": "index",
-                "responses": {
-                    "200": {
-                        "description": "successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "book"
-                ],
-                "summary": "Store a newly created item",
-                "operationId": "store",
-                "requestBody": {
-                    "description": "Request body description",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Book"
-                            },
-                            "example": {
-                                "title": "Eating Clean",
-                                "author": "Inge Tumiwa-Bachrens",
-                                "publisher": "Kawan Pustaka",
-                                "publication_year": "2016",
-                                "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170651l/3351107.jpg",
-                                "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu ‘sehat’ bagi tubuh kita.",
-                                "price": 85000
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "400": {
-                        "description": "Invalid input",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "201": {
-                        "description": "Successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "pasport_token_ready": [],
-                        "passport": []
-                    }
-                ]
-            }
-        },
-        "/api/book/{id}": {
-            "get": {
-                "tags": [
-                    "book"
-                ],
-                "summary": "Display the specified item",
-                "operationId": "show",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID of item that needs to be displayed",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "404": {
-                        "description": "Item not found",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid input",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "Successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "book"
-                ],
-                "summary": "Update the specified item",
-                "operationId": "update",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID of item that needs to be updated",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "description": "Request body description",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Book"
-                            },
-                            "example": {
-                                "title": "Eating Clean",
-                                "author": "Inge Tumiwa-Bachrens",
-                                "publisher": "Kawan Pustaka",
-                                "publication_year": "2016",
-                                "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170651l/3351107.jpg",
-                                "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir ‘sehat’ ternyata belum tentu ‘sehat’ bagi tubuh kita.",
-                                "price": 85000
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "404": {
-                        "description": "Item not found",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid input",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "Successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "passport_token_ready": [],
-                        "passport": []
-                    }
-                ]
-            },
-            "delete": {
-                "tags": [
-                    "book"
-                ],
-                "summary": "Remove the specified item",
-                "operationId": "destroy",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID of item that needs to be removed",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "404": {
-                        "description": "Item not found",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid input",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "204": {
-                        "description": "Successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "passport_token_ready": [],
-                        "passport": []
-                    }
-                ]
-            }
         }
     },
     "components": {
         "schemas": {
-            "Book": {
-                "title": "Book model",
-                "description": "Book model",
+            "AnimeMerch": {
+                "title": "Merch model",
+                "description": "Merch model",
                 "required": [
-                    "title",
-                    "author"
+                    "nama_item",
+                    "dibuat_oleh"
                 ],
                 "xml": {
-                    "name": "Book"
+                    "name": "AnimeMerch"
                 }
             },
             "User": {
@@ -423,12 +421,12 @@
     },
     "tags": [
         {
-            "name": "user",
-            "description": "user"
+            "name": "Anime Merch",
+            "description": "Anime Merch"
         },
         {
-            "name": "book",
-            "description": "book"
+            "name": "user",
+            "description": "user"
         }
     ]
 }
