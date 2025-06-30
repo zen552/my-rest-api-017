@@ -60,7 +60,7 @@ class AnimeMerchController extends Controller
      *             example={"nama_item": "One Piece Mug", "Producer": "Toei Animation", "tahun_rilis": "2023", "gambar": "https://example.com/cover.jpg", "description": "Mug edisi khusus One Piece Gear 5", "harga": 75000}
      *         ),
      *     ),
-     *     security={{"pasport_token_ready":{}, "passport":{}}}
+     *     security={{"passport_token_ready":{}, "passport":{}}}
      * )
     */
     public function store(Request $request)
@@ -159,7 +159,7 @@ class AnimeMerchController extends Controller
      *         @OA\JsonContent(
      *             ref="#/components/schemas/AnimeMerch",
      *             example={"nama_item": "Naruto Hoodie", "producer": "Studio Pierrot", "tahun_rilis": "2023", "gambar": "https://example.com/cover.jpg", "description": "Hoodie keren bergambar Naruto", "harga": 120000}
-     *         )
+     *         ),
      *     ),
      *     security={{"passport_token_ready":{}, "passport":{}}}
      * )

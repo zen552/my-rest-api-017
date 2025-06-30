@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\AnimeMerchController;
 
 Route::prefix('user')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
@@ -15,14 +15,14 @@ Route::prefix('user')->group(function () {
     })->middleware('auth:api');
 });
 
-Route::resource('book', BookController::class, [
+Route::resource('anime_merch', AnimeMerchController::class, [
     'only'=> [
         'index',
         'show'
     ]
 ]);
 
-Route::resource('book', BookController::class, [
+Route::resource('anime_merch', AnimeMerchController::class, [
     'except' => [
         'index',
         'show'
