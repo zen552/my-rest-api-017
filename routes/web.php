@@ -6,10 +6,10 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
-Route::get('/book', function () {
+Route::get('/anime_merch', function () {
     return view('pages.plp');
 })->name('plp');
 
-Route::get('/book/{i}', function () {
+Route::get('/anime_merch/{i}', function () {
     return view('pages.pdp');
 })->name('pdp');

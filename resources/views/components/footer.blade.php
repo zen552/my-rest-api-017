@@ -36,7 +36,7 @@
                         <input type="text" placeholder="Your email address">
                         <button class="submit-button"><i class="icon-arrow-right"></i></button>
                     </div>
-                    <ul class="footer-widget__footer-menu section-space--mt_60 d-none d-lg-block">
+                    <ul class="footer-widget__footer-menu  section-space--mt_60 d-none d-lg-block">
                         <li><a href="#">Term & Condition</a></li>
                         <li><a href="#">Policy</a></li>
                         <li><a href="#">Map</a></li>
@@ -49,16 +49,15 @@
         <div class="container-fluid container-fluid--cp-100">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 order-md-1 order-2">
-                    <span class="copyright-text text-center text-md-start">&copy; 2024 WTTW.
-                        <a href="https://hasthemes.com/" target="_blank">All Rights Reserved.</a>
-                    </span>
+                    <span class="copyright-text text-center text-md-start">&copy; 2025 Jose's Electronic Seller. <a
+                            href="https://hasthemes.com/" target="_blank">All Rights Reserved.</a></span>
 
                 </div>
 
                 <div class="col-lg-6 col-md-6 order-md-2 order-1">
                     <div class="footer-bottom-social">
                         <h6 class="title">Follow Us On Social</h6>
-                        <ul class="list footer-social-networks">
+                        <ul class="list footer-social-networks ">
                             <li class="item">
                                 <a href="https://twitter.com" target="_blank" aria-label="Twitter">
                                     <i class="social social_facebook"></i>

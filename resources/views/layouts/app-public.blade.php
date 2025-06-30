@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="description" content="{{ config('app.desc') }}">
-        <meta name="keywords" content="ecommerce,book">
+        <meta name="keywords" content="ecommerce,anime_merch">
         <meta name="author" content="{{ config('app.name') }}">
 
         <title>@yield('title') | {{ config('app.name') }}</title>
