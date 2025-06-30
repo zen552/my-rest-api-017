@@ -8,33 +8,32 @@ use App\Models\User;
 use OpenApi\Annotations as OA;
 
 /**
- * Class Book
+ * Class AnimeMerch
  * 
  * @author Alvin <alvin.422024017@civitas.ukrida.ac.id>
  * 
  * @OA\Schema(
- *      description="Book model",
- *      title="Book model",
- *      required={"title", "author"},
+ *      description="Merch model",
+ *      title="Merch model",
+ *      required={"nama_item", "dibuat_oleh"},
  *      @OA\Xml(
- *          name="Book"
+ *          name="AnimeMerch"
  *      )
  * )
  */
-class Book extends Model
+class AnimeMerch extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'books';
+    protected $table = 'anime_merch';
 
     protected $fillable = [
-        'title',
-        'author',
-        'publisher',
-        'publication_year',
-        'cover',
+        'nama_item',
+        'Producer',
+        'tahun_rilis',
+        'gambar',
         'description',
-        'price',
+        'harga',
         'created_by',
         'updated_by',
         'deleted_by',

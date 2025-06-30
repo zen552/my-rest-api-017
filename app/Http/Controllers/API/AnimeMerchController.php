@@ -6,23 +6,23 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use App\Models\Book;
+use App\Models\AnimeMerch;
 use OpenApi\Annotations as OA;
 
 /**
- * Class BookController
+ * Class AnimeMerchController
  * 
  * @author Alvin <alvin.422024017@civitas.ukrida.ac.id>
  */
 
-class BookController extends Controller
+class AnimeMerchController extends Controller
 {
         /**
      * @OA\Get(
-     *     path="/api/book",
-     *     tags={"book"},
-     *     summary="Display a listing of items",
-     *     operationId="index",
+     *     path="/api/anime_merch",
+     *     tags={"Anime Merch"},
+     *     summary="Display a listing of anime merchandise",
+     *     operationId="indexAnimeMerch",
      *     @OA\Response(
      *         response=200,
      *         description="successful",
@@ -32,16 +32,16 @@ class BookController extends Controller
      */
     public function index()
     {
-        $book = Book::all();
-        return response()->json(array('message'=>'Data retrieved successfully', 'data'=>$book), 200);
+        $merch = AnimeMerch::all();
+        return response()->json(array('message'=>'Data retrieved successfully', 'data'=>$merch), 200);
     }
 
     /**
      * @OA\Post(
-     *     path="/api/book",
-     *     tags={"book"},
-     *     summary="Store a newly created item",
-     *     operationId="store",
+     *     path="/api/anime_merch",
+     *     tags={"Anime Merch"},
+     *     summary="Store a newly created anime merchandise",
+     *     operationId="storeAnimeMerch",
      *     @OA\Response(
      *         response=400,
      *         description="Invalid input",
@@ -56,12 +56,8 @@ class BookController extends Controller
      *         required=true,
      *         description="Request body description",
      *         @OA\JsonContent(
-     *             ref="#/components/schemas/Book",
-     *             example={ "title": "Eating Clean", "author": "Inge Tumiwa-Bachrens",
-     *                 "publisher": "Kawan Pustaka", "publication_year": "2016",
-     *                 "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170651l/3351107.jpg",
-     *                 "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu ‘sehat’ bagi tubuh kita.",
-     *                 "price": 85000}
+     *             ref="#/components/schemas/AnimeMerch",
+     *             example={"nama_item": "One Piece Mug", "Producer": "Toei Animation", "tahun_rilis": "2023", "gambar": "https://example.com/cover.jpg", "description": "Mug edisi khusus One Piece Gear 5", "harga": 75000}
      *         ),
      *     ),
      *     security={{"pasport_token_ready":{}, "passport":{}}}
@@ -72,15 +68,16 @@ class BookController extends Controller
         try {
 
             $validator = Validator::make($request->all(), [
-                'title'  => 'required|unique:books',
-                'author' => 'required|max:100',
+                'nama_item'  => 'required|unique:anime_merch',
+                'producer'   => 'nullable|max:100',
+                'harga'      => 'nullable|numeric',
             ]);
             if ($validator->fails()) {
                 throw new HttpException(400, $validator->messages()->first());
             }
-            $book = new Book;
-            $book->fill($request->all())->save();
-            return response()->json(array('message'=>'Saved successfully', 'data'=>$book), 200);
+            $merch = new AnimeMerch();
+            $merch->fill($request->all())->save();
+            return response()->json(array('message'=>'Saved successfully', 'data'=>$merch), 200);
         } catch (\Exception $exception) {
             throw new HttpException(400, "Invalid data - {$exception->getMessage()}");
         }
@@ -88,10 +85,10 @@ class BookController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/book/{id}",
-     *     tags={"book"},
-     *     summary="Display the specified item",
-     *     operationId="show",
+     *     path="/api/anime_merch/{id}",
+     *     tags={"Anime Merch"},
+     *     summary="Display the specified anime merchandise item",
+     *     operationId="showAnimeMerch",
      *     @OA\Response(
      *         response=404,
      *         description="Item not found",
@@ -110,7 +107,7 @@ class BookController extends Controller
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
-     *         description="ID of item that needs to be displayed",
+     *         description="ID of anime merchandise",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -121,16 +118,16 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $book = Book::findOrFail($id);
-        return response()->json(array('message'=>'Data detail retrieved successfully', 'data'=>$book), 200);
+        $merch = AnimeMerch::findOrFail($id);
+        return response()->json(array('message'=>'Data detail retrieved successfully', 'data'=>$merch), 200);
     }
     
     /**
      * @OA\Put(
-     *     path="/api/book/{id}",
-     *     tags={"book"},
-     *     summary="Update the specified item",
-     *     operationId="update",
+     *     path="/api/anime_merch/{id}",
+     *     tags={"Anime Merch"},
+     *     summary="Update an anime merchandise item",
+     *     operationId="updateAnimeMerch",
      *     @OA\Response(
      *         response=404,
      *         description="Item not found",
@@ -149,7 +146,7 @@ class BookController extends Controller
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
-     *         description="ID of item that needs to be updated",
+     *         description="ID of anime merchandise that needs to be updated",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -160,12 +157,9 @@ class BookController extends Controller
      *         required=true,
      *         description="Request body description",
      *         @OA\JsonContent(
-     *             ref="#/components/schemas/Book",
-     *             example={"title": "Eating Clean", "author": "Inge Tumiwa-Bachrens", "publisher": "Kawan Pustaka", "publication_year": "2016",
-     *                 "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170651l/3351107.jpg",
-     *                 "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir ‘sehat’ ternyata belum tentu ‘sehat’ bagi tubuh kita.",
-     *                 "price": 85000}
-     *         ),
+     *             ref="#/components/schemas/AnimeMerch",
+     *             example={"nama_item": "Naruto Hoodie", "producer": "Studio Pierrot", "tahun_rilis": "2023", "gambar": "https://example.com/cover.jpg", "description": "Hoodie keren bergambar Naruto", "harga": 120000}
+     *         )
      *     ),
      *     security={{"passport_token_ready":{}, "passport":{}}}
      * )
@@ -175,14 +169,14 @@ class BookController extends Controller
         if (!$id) {
             throw new HttpException(400, "Invalid id");
         }
-        $book = Book::find($id);
-        if (!$book) {
+        $merch = AnimeMerch::find($id);
+        if (!$merch) {
             throw new HttpException(404, 'Item not found');
         }
 
         try {
-            $book->fill($request->all())->save();
-            return response()->json(array('message'=>'Updated successfully', 'data'=>$book), 200);
+            $merch->fill($request->all())->save();
+            return response()->json(array('message'=>'Updated successfully', 'data'=>$merch), 200);
         } catch (\Exception $exception) {
             throw new HttpException(400, "Invalid data - {$exception->getMessage()}");
         }
@@ -190,10 +184,10 @@ class BookController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/book/{id}",
-     *     tags={"book"},
-     *     summary="Remove the specified item",
-     *     operationId="destroy",
+     *     path="/api/anime_merch/{id}",
+     *     tags={"Anime Merch"},
+     *     summary="Remove an anime merchandise item",
+     *     operationId="destroyAnimeMerch",
      *     @OA\Response(
      *         response=404,
      *         description="Item not found",
@@ -212,7 +206,7 @@ class BookController extends Controller
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
-     *         description="ID of item that needs to be removed",
+     *         description="ID of anime merchandise that needs to be removed",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -224,9 +218,9 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        $book = Book::findOrFail($id);
-        $book->delete();
+        $merch = AnimeMerch::findOrFail($id);
+        $merch->delete();
 
-        return response()->json(array('message'=>'Deleted successfully', 'data'=>$book), 204);
+        return response()->json(array('message'=>'Deleted successfully', 'data'=>$merch), 204);
     }
 }

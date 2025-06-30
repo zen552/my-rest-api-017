@@ -9,15 +9,14 @@ return new class extends Migration
     /** Run the migrations. */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('anime_merch', function (Blueprint $table) {
             $table->id(); // INT auto_increment primary key
-            $table->text('title');
-            $table->string('author', 100)->nullable();
-            $table->string('publisher', 100)->nullable();
-            $table->string('publication_year', 4)->nullable();
-            $table->text('cover')->nullable();
+            $table->text('nama_item');
+            $table->string('Producer', 100)->nullable();
+            $table->string('tahun_rilis', 4)->nullable();
+            $table->text('gambar')->nullable();
             $table->text('description')->nullable();
-            $table->double('price')->nullable();
+            $table->double('harga')->nullable();
 
             $table->timestamp('created_at')->useCurrent(); // default now()
             $table->integer('created_by')->nullable();
@@ -30,7 +29,7 @@ return new class extends Migration
     /** Reverse the migrations. */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('anime_merch');
     }
 
 };

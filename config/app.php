@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Zerca animechant'),
+    'desc' => env('APP_DESC', 'Kami menjual Gundam model kit plastic (gunpla), anime figure, dan toolkit.'),
 
     /*
     |--------------------------------------------------------------------------
